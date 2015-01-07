@@ -8,7 +8,8 @@ require 'optparse'
 class Daemon
   def initialize(args)
     @options = {
-      multiple: false
+      multiple: false,
+      log_output: true
     }
     @server = UsbunfreezeDaemon::Server.new
 
@@ -19,6 +20,9 @@ class Daemon
       end
       opts.on("-c", "--config CONFIG_PATH", String, "Path to settings file") do |s|
         @server.conf_path = s
+      end
+      opts.on("-n", "--no-daemonize", "Do not daemonize") do |s|
+        @options[:ontop] = true
       end
 
       begin

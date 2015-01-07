@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = UsbunfreezeDaemon::VERSION
   spec.authors       = ["theirix"]
   spec.email         = ["theirix@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Usbunfreeze server}
+  spec.description   = %q{Usbunfreeze server}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -21,4 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "daemons", "~> 1.1.0"
+  spec.add_development_dependency "settingslogic", "~> 2.0.0"
+  spec.add_development_dependency "aws-sdk-v1", "~> 1.60.0"
+  spec.add_development_dependency "json", "~> 1.8.0"
 end
