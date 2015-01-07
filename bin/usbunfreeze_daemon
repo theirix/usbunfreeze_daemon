@@ -1,0 +1,41 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
+
+require 'usbunfreeze_daemon'
+require 'daemons'
+require 'optparse'
+
+class Daemon
+  def initialize(args)
+    @options = {
+      multiple: false
+    }
+    @server = UsbunfreezeDaemon::Server.new
+
+    OptionParser.new do |opts|
+      opts.banner = "Usage: usbunfreeze_daemon [options] start|stop|restart|status"
+      opts.on("-d", "--directory DIR", String, "Path to daemon PIDs and logs") do |s|
+        @options[:dir] = s
+      end
+      opts.on("-c", "--config CONFIG_PATH", String, "Path to settings file") do |s|
+        @server.conf_path = s
+      end
+
+      begin
+        opts.parse(ARGV)
+      rescue OptionParser::ParseError => e
+        STDERR.puts e.message, "\n", opts
+        exit(-1)
+      end
+    end.parse!(args)
+  end
+
+  def run
+    Daemons.run_proc('usbunfreeze_daemon', @options) do
+      @server.run
+    end
+
+  end
+end
+
+Daemon.new(ARGV).run
