@@ -4,6 +4,7 @@ $LOAD_PATH.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
 require 'usbunfreeze_daemon'
 require 'daemons'
 require 'optparse'
+require 'logger'
 
 class Daemon
   def initialize(args)
@@ -11,15 +12,22 @@ class Daemon
       multiple: false,
       log_output: true
     }
+    @logger = Logger.new(STDOUT)
+    @logger.datetime_format = "%Y-%m-%d %H:%M:%S"
+
     @server = UsbunfreezeDaemon::Server.new
+    @server.logger = @logger
 
     OptionParser.new do |opts|
       opts.banner = "Usage: usbunfreeze_daemon [options] start|stop|restart|status"
+      opts.on("-c", "--config CONFIG_PATH", String, "Path to settings file") do |s|
+        @server.conf_path = s
+      end
       opts.on("-d", "--directory DIR", String, "Path to daemon PIDs and logs") do |s|
         @options[:dir] = s
       end
-      opts.on("-c", "--config CONFIG_PATH", String, "Path to settings file") do |s|
-        @server.conf_path = s
+      opts.on("-s", "--system", "Use /var for pids and logs") do |s|
+        @options[:dir_mode] = :system
       end
       opts.on("-n", "--no-daemonize", "Do not daemonize") do |s|
         @options[:ontop] = true
@@ -28,7 +36,7 @@ class Daemon
       begin
         opts.parse(ARGV)
       rescue OptionParser::ParseError => e
-        STDERR.puts e.message, "\n", opts
+        logger.error "Error: #{e.message}\nOpts: #{opts.inspect}"
         exit(-1)
       end
     end.parse!(args)

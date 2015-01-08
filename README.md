@@ -20,9 +20,16 @@ Configure Amazon AWS SQS queue and place access, secret key and queue name to th
 
 Launch a daemon:
 
-    usbunfreeze_daemon -C /path/to/settings.yaml
+    usbunfreeze_daemon -с /path/to/settings.yaml start
 
 Daemon will poll AWS SQS queue and launch specified command when a message will be received.
+
+Possible flags:
+
+ * `--directory PATH` -- use `PATH` for logs and pids. Used usually for non-system installation
+ * `--system` -- use `/var/log` for logging and `/var/run` for pid storing. `-d` is not needed with this flag.s
+ * `--no-daemonize` -- do not fork into daemon
+ * `start|stop|status` -- self-describing control commands
 
 ## License information
 

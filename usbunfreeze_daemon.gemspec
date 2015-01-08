@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = UsbunfreezeDaemon::VERSION
   spec.authors       = ["theirix"]
   spec.email         = ["theirix@gmail.com"]
-  spec.summary       = %q{Usbunfreeze server}
-  spec.description   = %q{Usbunfreeze server}
-  spec.homepage      = ""
+  spec.summary       = %q{Usbunfreeze Daemon}
+  spec.description   = %q{Daemon application for Usbunfreeze kit}
+  spec.homepage      = "http://github.com/theirix/usbunfreeze_daemon"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
