@@ -1,31 +1,29 @@
 # UsbunfreezeDaemon
 
-TODO: Write a gem description
+[![Gem Version](https://img.shields.io/gem/v/usbunfreeze_daemon.svg)](https://rubygems.org/gems/usbunfreeze_daemon)
+
+Daemon application for Usbunfreeze kit.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Install a gem
 
-```ruby
-gem 'usbunfreeze_daemon'
-```
+        gem install usbunfreeze_daemon
 
-And then execute:
+## Configuration
 
-    $ bundle
+Settings file template can be found at `config/usbunfreeze.yaml.example`.
 
-Or install it yourself as:
-
-    $ gem install usbunfreeze_daemon
+Configure Amazon AWS SQS queue and place access, secret key and queue name to the config.
 
 ## Usage
 
-TODO: Write usage instructions here
+Launch a daemon:
 
-## Contributing
+    usbunfreeze_daemon -C /path/to/settings.yaml
 
-1. Fork it ( https://github.com/[my-github-username]/usbunfreeze_daemon/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+Daemon will poll AWS SQS queue and launch specified command when a message will be received.
+
+## License information
+
+Please consult with the LICENSE.txt for license information. It is MIT by the way.
