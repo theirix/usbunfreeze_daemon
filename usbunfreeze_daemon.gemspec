@@ -22,6 +22,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_runtime_dependency "daemons", "~> 1.1.0"
   spec.add_runtime_dependency "settingslogic", "~> 2.0.0"
-  spec.add_runtime_dependency "aws-sdk-v1", "~> 1.60.0"
+  spec.add_runtime_dependency "aws-sdk", "~> 2"
   spec.add_runtime_dependency "json", "~> 1.8.0"
 end
