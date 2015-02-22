@@ -28,7 +28,7 @@ Possible flags:
 
  * `--directory PATH` -- use `PATH` for logs and pids. Used usually for non-system installation
  * `--system` -- use `/var/log` for logging and `/var/run` for pid storing. `-d` is not needed with this flag.s
- * `--no-daemonize` -- do not fork into daemon
+ * `--ontop` -- do not fork into daemon
  * `start|stop|status` -- self-describing control commands
 
 ## License information

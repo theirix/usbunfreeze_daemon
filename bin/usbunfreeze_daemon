@@ -29,14 +29,14 @@ class Daemon
       opts.on("-s", "--system", "Use /var for pids and logs") do |s|
         @options[:dir_mode] = :system
       end
-      opts.on("-n", "--no-daemonize", "Do not daemonize") do |s|
+      opts.on("-t", "--no-daemonize", "Do not daemonize") do |s|
         @options[:ontop] = true
       end
 
       begin
         opts.parse(ARGV)
       rescue OptionParser::ParseError => e
-        logger.error "Error: #{e.message}\nOpts: #{opts.inspect}"
+        @logger.error "Error: #{e.message}\nOpts: #{opts.inspect}"
         exit(-1)
       end
     end.parse!(args)

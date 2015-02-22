@@ -24,4 +24,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "settingslogic", "~> 2.0.0"
   spec.add_runtime_dependency "aws-sdk", "~> 2"
   spec.add_runtime_dependency "json", "~> 1.8.0"
+  spec.add_runtime_dependency "retries", "~> 0.0.5"
 end
